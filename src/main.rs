@@ -1,10 +1,11 @@
 fn main() {
-    let before = &"before";
     {
-        let foo1 = Box::new("bar1".to_string());
-        dbg!(foo1);
+        let foo1;
+        {
+            foo1 = Box::new("bar1".to_string());
+        }
+        {
+            let _foo2 = *foo1.clone();
+        }
     }
-    panic!(&"after");
-    let after = &"after";
-    dbg!((before, after));
 }
